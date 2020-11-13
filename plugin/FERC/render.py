@@ -52,7 +52,7 @@ def getXulePlugin(cntlr):
     global _xule_plugin_info
     if _xule_plugin_info is None:
         for _plugin_name, plugin_info in PluginManager.modulePluginInfos.items():
-            if plugin_info.get('moduleURL') == 'xule':
+            if 'xule' in _plugin_name:
                 _xule_plugin_info = plugin_info
                 break
         else:
@@ -2490,7 +2490,6 @@ __pluginInfo__ = {
     'version': '0.9',
     'description': "FERC Tools",
     'copyright': '(c) Copyright 2018 XBRL US Inc., All rights reserved.',
-    'import': 'xule',
     # classes of mount points (required)
     'CntlrCmdLine.Options': cmdLineOptionExtender,
     'CntlrCmdLine.Utility.Run': fercCmdUtilityRun,
