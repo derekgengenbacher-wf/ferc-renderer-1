@@ -31,7 +31,7 @@ def determine_template(modelXbrl):
         if template_set_location is not None:
             return template_set_location
     raise FERCRenderException(
-        'Cannot find the correct form template for form: //{}//'.format(
+        'Cannot find the correct form template for form: {}'.format(
             form_type_fact.value if form_type_fact is not None else None
         )
     )
