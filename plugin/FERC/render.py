@@ -25,8 +25,15 @@ import tempfile
 import uuid
 import zipfile
 
-# This will hold the xule plugin module
-_xule_plugin_info = None
+from ferc_renderer.xule import __pluginInfo__ as ferc_xule_plugin_info
+
+# This is a Workiva specific change. This change exists because Workiva does not import xule
+# through the renderer's plugin info import function. That means the getXulePlugin function
+# will not correctly find the ferc xule plugin. Instead we hard code the plugin info via an
+# import of the dict above.
+_xule_plugin_info = ferc_xule_plugin_info
+# End of Workiva change
+
 
 # xule namespace used in the template
 _XULE_NAMESPACE_MAP = {'xule': 'http://xbrl.us/xule/2.0/template', 
@@ -52,12 +59,7 @@ def getXulePlugin(cntlr):
     global _xule_plugin_info
     if _xule_plugin_info is None:
         for _plugin_name, plugin_info in PluginManager.modulePluginInfos.items():
-            # This is a Workiva specific change. This change exists because Workiva does not import xule
-            # through the renderer's plugin info import function. This check must be different than the
-            # regular check in the actual renderer code because the moduleURL information for xule is
-            # different. Instead we look at the plugin names and look specifically for xule.
-            if 'xule' in _plugin_name:
-                # End of Workiva specific chaange
+            if plugin_info.get('moduleURL') == 'xule':
                 _xule_plugin_info = plugin_info
                 break
         else:
