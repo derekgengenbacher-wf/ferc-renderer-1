@@ -52,7 +52,12 @@ def getXulePlugin(cntlr):
     global _xule_plugin_info
     if _xule_plugin_info is None:
         for _plugin_name, plugin_info in PluginManager.modulePluginInfos.items():
+            # This is a Workiva specific change. This change exists because Workiva does not import xule
+            # through the renderer's plugin info import function. This check must be different than the
+            # regular check in the actual renderer code because the moduleURL information for xule is
+            # different. Instead we look at the plugin names and look specifically for xule.
             if 'xule' in _plugin_name:
+                # End of Workiva specific chaange
                 _xule_plugin_info = plugin_info
                 break
         else:
