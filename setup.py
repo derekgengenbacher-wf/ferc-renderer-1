@@ -7,7 +7,7 @@ setup(
     long_description=open('README.md').read(),
     url='https://github.com/workiva/ferc-renderer',
     author='Workiva',
-    author_email='derek.gengenbaacher@workiva.com',
+    author_email='derek.gengenbacher@workiva.com',
     include_package_data=True,
     packages=find_packages(),
     classifiers=[

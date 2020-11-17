@@ -24,27 +24,27 @@ limitations under the License.
 $Change: 23092 $
 DOCSKIP
 """
-from .XuleProcessor import process_xule
-from . import XuleRunTime as xrt
-from . import XuleRuleSet as xr
-from . import XuleUtility as xu
-from . import XuleConstants as xc
-from .XuleContext import XuleGlobalContext, XuleRuleContext
+from ferc_renderer.xule.XuleProcessor import process_xule
+from ferc_renderer.xule import XuleRunTime as xrt
+from ferc_renderer.xule import XuleRuleSet as xr
+from ferc_renderer.xule import XuleUtility as xu
+from ferc_renderer.xule import XuleConstants as xc
+from ferc_renderer.xule.XuleContext import XuleGlobalContext, XuleRuleContext
 import collections
 import copy
 
 try:
-    from . import XuleValidate as xv
+    from ferc_renderer.xule import XuleValidate as xv
 except ImportError:
     xv = None
 
 try:
-    from . import XuleParser as xp
+    from ferc_renderer.xule import XuleParser as xp
 except ImportError:
     xp = None
     
 try:
-    from . import XuleMultiProcessing as xm
+    from ferc_renderer.xule import XuleMultiProcessing as xm
 except ImportError:
     xm = None
 

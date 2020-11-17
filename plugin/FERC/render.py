@@ -25,8 +25,15 @@ import tempfile
 import uuid
 import zipfile
 
-# This will hold the xule plugin module
-_xule_plugin_info = None
+from ferc_renderer.xule import __pluginInfo__ as ferc_xule_plugin_info
+
+# This is a Workiva specific change. This change exists because Workiva does not import xule
+# through the renderer's plugin info import function. That means the getXulePlugin function
+# will not correctly find the ferc xule plugin. Instead we hard code the plugin info via an
+# import of the dict above.
+_xule_plugin_info = ferc_xule_plugin_info
+# End of Workiva change
+
 
 # xule namespace used in the template
 _XULE_NAMESPACE_MAP = {'xule': 'http://xbrl.us/xule/2.0/template', 
@@ -2490,7 +2497,6 @@ __pluginInfo__ = {
     'version': '0.9',
     'description': "FERC Tools",
     'copyright': '(c) Copyright 2018 XBRL US Inc., All rights reserved.',
-    'import': 'xule',
     # classes of mount points (required)
     'CntlrCmdLine.Options': cmdLineOptionExtender,
     'CntlrCmdLine.Utility.Run': fercCmdUtilityRun,
